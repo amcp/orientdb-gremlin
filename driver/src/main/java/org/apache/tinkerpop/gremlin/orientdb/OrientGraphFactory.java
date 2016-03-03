@@ -1,7 +1,6 @@
 package org.apache.tinkerpop.gremlin.orientdb;
 
 import com.orientechnologies.orient.core.db.ODatabaseFactory;
-import com.orientechnologies.orient.core.db.OPartitionedDatabasePool;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.exception.ODatabaseException;
 import com.orientechnologies.orient.core.metadata.schema.OImmutableClass;

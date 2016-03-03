@@ -17,7 +17,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.Iterator;
 import java.util.Map;
 
-import com.orientechnologies.orient.core.db.OPartitionedDatabasePool;
 import org.apache.tinkerpop.gremlin.structure.Direction;
 import org.apache.tinkerpop.gremlin.structure.Edge;
 import org.apache.tinkerpop.gremlin.structure.Graph;
@@ -25,11 +24,8 @@ import org.apache.tinkerpop.gremlin.structure.Property;
 import org.apache.tinkerpop.gremlin.structure.Transaction;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 import org.apache.tinkerpop.gremlin.structure.VertexProperty;
-import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
-
-import com.google.common.collect.Lists;
 
 public class OrientGraphTest {
 
