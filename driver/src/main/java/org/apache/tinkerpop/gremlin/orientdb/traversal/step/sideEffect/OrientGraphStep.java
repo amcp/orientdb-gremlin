@@ -15,7 +15,7 @@ import org.apache.tinkerpop.gremlin.orientdb.OrientIndexQuery;
 import org.apache.tinkerpop.gremlin.orientdb.OrientVertex;
 import org.apache.tinkerpop.gremlin.process.traversal.Compare;
 import org.apache.tinkerpop.gremlin.process.traversal.step.HasContainerHolder;
-import org.apache.tinkerpop.gremlin.process.traversal.step.map.GraphStep;
+import org.apache.tinkerpop.gremlin.process.traversal.step.sideEffect.GraphStep;
 import org.apache.tinkerpop.gremlin.process.traversal.step.util.HasContainer;
 import org.apache.tinkerpop.gremlin.structure.Edge;
 import org.apache.tinkerpop.gremlin.structure.Element;
@@ -30,14 +30,14 @@ import com.orientechnologies.orient.core.index.OIndex;
 import com.orientechnologies.orient.core.index.OIndexManagerProxy;
 import com.orientechnologies.orient.core.metadata.schema.OImmutableClass;
 
-public class OrientGraphStep<S, E extends Element> extends GraphStep<S, E>implements HasContainerHolder {
+public class OrientGraphStep<S extends Element> extends GraphStep<S>implements HasContainerHolder {
 
     private final List<HasContainer> hasContainers = new ArrayList<>();
 
-    public OrientGraphStep(final GraphStep<S, E> originalGraphStep) {
-        super(originalGraphStep.getTraversal(), originalGraphStep.getReturnClass(), originalGraphStep.isStartStep(), originalGraphStep.getIds());
+    public OrientGraphStep(final GraphStep<S> originalGraphStep) {
+        super(originalGraphStep.getTraversal(), originalGraphStep.getReturnClass(), originalGraphStep.getIds());
         originalGraphStep.getLabels().forEach(this::addLabel);
-        this.setIteratorSupplier(() -> (Iterator<E>) (isVertexStep() ? this.vertices() : this.edges()));
+        this.setIteratorSupplier(() -> (Iterator<S>) (isVertexStep() ? this.vertices() : this.edges()));
     }
 
     private boolean isVertexStep() {
